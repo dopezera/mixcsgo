@@ -41,7 +41,7 @@ export const register = (username, steamid, email, password) => async (dispatch)
     });
 
     try {
-        const { data } = await Axios.post('refacttesting.herokuapp.com/api/users', {
+        const { data } = await Axios.post('/api/user/create', {
         username,
         steamid,
         email,
