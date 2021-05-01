@@ -38,7 +38,7 @@ export default function UserForm(props) {
 
     const redirect = props.location.search
     ? props.location.search.split('=')[1]
-    : '/';
+    : '/login';
 
     const userRegister = useSelector((state) => state.userRegister);
     const { userInfo, loading, error } = userRegister; 

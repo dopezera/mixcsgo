@@ -48,8 +48,8 @@ props: {
 
 const useStyles = makeStyles({
   appMain: {
-    paddingLeft: '100px',
-    paddingRight: '100px',
+    paddingLeft: '10%',
+    paddingRight: '10%',
     width: '100%',
   }
 })
