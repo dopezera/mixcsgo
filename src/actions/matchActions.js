@@ -1,4 +1,6 @@
 import Axios from "axios";
+import config from '../config'
+
 import { 
     MATCH_LIST_REQUEST,
     MATCH_LIST_SUCCESS,
