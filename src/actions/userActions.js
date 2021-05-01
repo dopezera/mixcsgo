@@ -1,4 +1,6 @@
 import Axios from "axios";
+import config from '../config';
+
 import { 
     USER_LIST_FAIL, 
     USER_LIST_REQUEST, 
@@ -15,7 +17,7 @@ import {
 export const signin = (email, password) => async (dispatch) => {
     dispatch({ type: USER_SIGNIN_REQUEST, payload: { email, password } });
     try {
-        const { data } = await Axios.post('/api/user/signin', { email: email, password: password });
+        const { data } = await Axios.post(`${config.baseURL}/api/user/signin`, { email: email, password: password });
         dispatch({type: USER_SIGNIN_SUCCESS, payload: data});
         localStorage.setItem("userInfo", JSON.stringify(data));
 
