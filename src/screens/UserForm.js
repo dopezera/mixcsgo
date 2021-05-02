@@ -48,7 +48,8 @@ export default function UserForm(props) {
         e.preventDefault();
         if (password !== confirmPassword) {
           alert('Você inseriu senha e confirmação de senha diferentes');
-        } else {
+        }
+        else {
           dispatch(register(username, steamid, email, password));
         }
       };
