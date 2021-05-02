@@ -18,14 +18,12 @@ export default function Match(props) {
     const ct_side = [];
 
     match.players_details.map((player) => {
-        //console.log(player.team);
         if (player.team == 2) {
             t_side.push(player);
         }
     })
 
     match.players_details.map((player) => {
-        //console.log(player.team);
         if (player.team == 3) {
             ct_side.push(player);
         }

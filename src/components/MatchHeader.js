@@ -30,7 +30,6 @@ export default function MatchHeader(props) {
     const map_name = props.match.map_name;
     const t_score = props.match.t_score;
     const ct_score = props.match.ct_score;
-    console.log(t_score);
     
     return (
         <Paper elevation={0} square className={classes.root}>
