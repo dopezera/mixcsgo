@@ -13,8 +13,6 @@ import MatchesScreen from './screens/MatchesScreen';
 import ProtectedRoute from './components/ProtectedRoute';
 import { useSelector } from 'react-redux';
 
-//dope on heroku
-
 const theme = createMuiTheme({
 palette: {
   primary: {
@@ -69,7 +67,7 @@ function App() {
         <main>
         <Route path="/register" component={UserForm} exact></Route>
         <Route path="/login" component={SigninScreen} exact></Route>
-        <Route path="/users" isAuth={userInfo} component={UserScreen} exact></Route>
+        <ProtectedRoute path="/users" isAuth={userInfo} component={UserScreen} exact></ProtectedRoute>
         <ProtectedRoute path="/matches" isAuth={userInfo} component={MatchesScreen} exact></ProtectedRoute>
       </main>
       </div>

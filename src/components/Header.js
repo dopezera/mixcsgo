@@ -55,7 +55,7 @@ export default function Header() {
                         <IconButton size="small">
                         {userInfo ? (
                                     <Badge badgeContent={userInfo.lvl} color="primary">
-                                    <PersonIcon fontSize="small"></PersonIcon>
+                                    <Link to="/users"><PersonIcon fontSize="small"></PersonIcon></Link>
                                 </Badge>
                             ) : (
                                 <div></div>
@@ -64,7 +64,7 @@ export default function Header() {
                         </IconButton>
                         <IconButton>
                             <Badge color="primary">
-                                <ReceiptIcon fontSize="small" />
+                            <Link to="/matches"><ReceiptIcon fontSize="small" /></Link>
                             </Badge>
                         </IconButton>
                         <IconButton onClick={signoutHandler}>
