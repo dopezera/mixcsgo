@@ -47,11 +47,6 @@ const dispatch = useDispatch();
 const userList = useSelector((state) => state.userList); //definindo reducer
 const { loading, error, users } = userList; 
 
-users.map( (user) => { //fazendo transformacoes pra exibicao fazer sentido pro usuario
-  user.impact = Math.trunc(user.impact*10);
-  user.winPercentage = user.winPercentage*100;
-});
-
 React.useEffect(() => {
     dispatch(listUsers()); 
 }, []);
