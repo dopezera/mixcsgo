@@ -47,6 +47,11 @@ const dispatch = useDispatch();
 const userList = useSelector((state) => state.userList); //definindo reducer
 const { loading, error, users } = userList; 
 
+const usersDisplay = users.map( (user) => {
+  user.impact = Math.trunc(user.impact*10);
+  user.winPercentage = user.winPercentage*100;
+})
+
 React.useEffect(() => {
     dispatch(listUsers()); 
 }, []);
@@ -73,7 +78,7 @@ React.useEffect(() => {
                 },
         ]} 
         className={classes.table} 
-        rows={users} 
+        rows={usersDisplay} 
         columns={columns} 
         pageSize={10}
         />
