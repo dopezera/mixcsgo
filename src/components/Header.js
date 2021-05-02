@@ -54,7 +54,7 @@ export default function Header() {
                     <Grid item>
                         <IconButton size="small">
                         {userInfo ? (
-                                    <Badge badgeContent={userInfo.lvl} color="primary">
+                                    <Badge badgeContent={Math.trunc(userInfo.lvl*10)} color="primary">
                                     <Link to="/users"><PersonIcon fontSize="small"></PersonIcon></Link>
                                 </Badge>
                             ) : (
