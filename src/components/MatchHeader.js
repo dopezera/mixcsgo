@@ -46,7 +46,6 @@ export default function MatchHeader(props) {
                     variant="subtitle1"
                     component="div">
                     {t_score} x {ct_score}
-                    {moment(props.match.created).format("lll")}
                     </Typography>
                     <Typography 
                     variant="subtitle2"
