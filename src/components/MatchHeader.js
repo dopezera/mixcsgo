@@ -1,5 +1,7 @@
-import { Card, makeStyles, Paper, Typography } from '@material-ui/core';
+import { makeStyles, Paper, Typography } from '@material-ui/core';
 import React from 'react';
+
+import moment from 'moment';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -44,6 +46,7 @@ export default function MatchHeader(props) {
                     variant="subtitle1"
                     component="div">
                     {t_score} x {ct_score}
+                    {moment(props.match.created).format("lll")}
                     </Typography>
                 </div>
             </div>
