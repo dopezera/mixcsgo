@@ -1,8 +1,8 @@
-import { Card, Container, Grid, makeStyles, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@material-ui/core';
-import { DataGrid } from '@material-ui/data-grid';
 import React from 'react';
 import MatchHeader from './MatchHeader';
 import MatchFooter from './MatchFooter';
+
+import { Grid, Table, TableHead, TableBody, TableRow, makeStyles, TableCell } from '@material-ui/core';
 
 const useStyles = makeStyles({
     table: {

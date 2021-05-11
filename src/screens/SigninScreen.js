@@ -68,7 +68,7 @@ export default function UserSignin(props) {
             <Paper className={classes.pageContent}>
             <form className={classes.root} onSubmit={submitHandler}>
                 <Grid container>
-                    <Grid item xs={6}>
+                    <Grid item xs={12}>
                         <TextField 
                         type="email"
                         id="email"
@@ -94,9 +94,6 @@ export default function UserSignin(props) {
                             </Link>
                         </div>
                         </Grid>
-                    </Grid>
-                    <Grid item xs={6}>
-
                     </Grid>
                 </Grid>
             </form>

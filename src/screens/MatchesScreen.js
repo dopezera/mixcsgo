@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { listMatches } from '../actions/matchActions';
 import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
-import { Grid, makeStyles, Paper } from '@material-ui/core';
+import { Grid, makeStyles } from '@material-ui/core';
 import PageHeader from '../components/PageHeader';
 import Match from '../components/Match';
 
@@ -41,9 +41,11 @@ export default function MatchesScreen() {
         <MessageBox>{error}</MessageBox>
     ) : (
     <Grid container>
+        <Grid item>
         {matches.map( (match) => {
             return <Match key={match.id} match={match}></Match>
         })}
+        </Grid>
     </Grid>
     )}
         </>

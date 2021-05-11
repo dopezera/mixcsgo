@@ -1,11 +1,10 @@
 import React from 'react';
 
-import { AppBar, Badge, Grid, IconButton, InputBase, makeStyles, Toolbar } from '@material-ui/core';
-import ChatBubbleOutlineIcon from '@material-ui/icons/ChatBubbleOutline';
+import { AppBar, Badge, Grid, IconButton, makeStyles, Toolbar } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { signout } from '../actions/userActions';
-import { ExitToApp, Filter9 } from '@material-ui/icons';
+import { ExitToApp } from '@material-ui/icons';
 import GamesIcon from '@material-ui/icons/Games';
 import ReceiptIcon from '@material-ui/icons/Receipt';
 import PersonIcon from '@material-ui/icons/Person';
