@@ -8,7 +8,10 @@ import {
     USER_SIGNIN_FAIL, 
     USER_SIGNIN_REQUEST,
     USER_SIGNIN_SUCCESS,
-    USER_SIGNOUT
+    USER_SIGNOUT,
+    USER_CHECKIN_REQUEST,
+    USER_CHECKIN_SUCCESS,
+    USER_CHECKIN_FAIL
 } from "../constants/userConstants";
 
 export const userSigninReducer = (state = {}, action) => {
@@ -46,6 +49,19 @@ export const userRegisterReducer = (state = {}, action) => {
         case USER_REGISTER_SUCCESS:
             return {loading: false, userInfo: action.payload}
         case USER_REGISTER_FAIL:
+            return {loading: false, error: action.payload}
+        default:
+            return state;
+    }
+}
+
+export const userCheckinReducer = (state = {}, action) => {
+    switch(action.type) {
+        case USER_CHECKIN_REQUEST:
+            return {loading: true};
+        case USER_CHECKIN_SUCCESS:
+            return {loading: false, userInfo: action.payload}
+        case USER_CHECKIN_FAIL:
             return {loading: false, error: action.payload}
         default:
             return state;

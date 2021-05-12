@@ -8,6 +8,7 @@ import Header from './components/Header';
 import UserForm from './screens/UserForm';
 
 import SigninScreen from './screens/SigninScreen';
+import CheckinScreen from './screens/CheckinScreen';
 import UserScreen from './screens/UserScreen';
 import MatchesScreen from './screens/MatchesScreen';
 import ProtectedRoute from './components/ProtectedRoute';
@@ -67,6 +68,7 @@ function App() {
         <main>
         <Route path="/register" component={UserForm} exact></Route>
         <Route path="/login" component={SigninScreen} exact></Route>
+        <Route path="/checkin" component={CheckinScreen} exact></Route>
         <ProtectedRoute path="/users" isAuth={userInfo} component={UserScreen} exact></ProtectedRoute>
         <ProtectedRoute path="/matches" isAuth={userInfo} component={MatchesScreen} exact></ProtectedRoute>
       </main>

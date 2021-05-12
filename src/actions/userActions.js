@@ -11,7 +11,10 @@ import {
     USER_SIGNIN_FAIL,
     USER_SIGNIN_REQUEST,
     USER_SIGNIN_SUCCESS,
-    USER_SIGNOUT
+    USER_SIGNOUT,
+    USER_CHECKIN_REQUEST,
+    USER_CHECKIN_SUCCESS,
+    USER_CHECKIN_FAIL
 } from "../constants/userConstants"
 
 export const signin = (email, password) => async (dispatch) => {
@@ -34,6 +37,30 @@ export const signin = (email, password) => async (dispatch) => {
 export const signout = () => (dispatch) => {
     localStorage.removeItem('userInfo');
     dispatch({type: USER_SIGNOUT});
+}
+
+export const checkin = (userId, username, userlvl) => async (dispatch) => {
+    dispatch({
+        type: USER_CHECKIN_REQUEST,
+        payload: { userId, username, userlvl }
+    });
+
+    try {
+        const { data } = await Axios.post(`${config.baseURL}/api/user/checkin`, {
+        userId,
+        username,
+        userlvl
+        });
+        dispatch({
+            type: USER_CHECKIN_SUCCESS,
+            payload: data
+        });
+    } catch(error) {
+        dispatch({
+            type: USER_CHECKIN_FAIL,
+            payload: error.message
+        });
+    }
 }
 
 export const register = (username, steamid, email, password) => async (dispatch) => {
