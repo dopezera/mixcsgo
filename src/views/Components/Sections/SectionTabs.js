@@ -26,7 +26,7 @@ export default function SectionTabs(props) {
   const dispatch = useDispatch();
 
   const userSignin = useSelector( (state) => state.userSignin );
-  const userInfo = userSignin;
+  const { userInfo } = userSignin;
 
   let verificador = false;
 
