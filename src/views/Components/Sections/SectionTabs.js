@@ -26,7 +26,7 @@ export default function SectionTabs(props) {
   const dispatch = useDispatch();
 
   const userSignin = useSelector( (state) => state.userSignin );
-  const userInfo = {id: 3, username: 'DOPE', lvl: 10}
+  const userInfo = userSignin;
 
   let verificador = false;
 
@@ -41,6 +41,7 @@ export default function SectionTabs(props) {
 
 
   const handleCheckIn = () => {
+    console.log("UserId: %d, Username: %s, LVL: %d", userInfo.id, userInfo.username, Math.trunc(userInfo.lvl*10))
     console.log('checkin realizado com sucesso');
     dispatch(checkin(userInfo.id, userInfo.username, Math.trunc(userInfo.lvl*10)));
   };
