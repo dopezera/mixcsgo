@@ -14,7 +14,10 @@ import {
     USER_SIGNOUT,
     USER_CHECKIN_REQUEST,
     USER_CHECKIN_SUCCESS,
-    USER_CHECKIN_FAIL
+    USER_CHECKIN_FAIL,
+    USER_LISTCHECKEDIN_REQUEST,
+    USER_LISTCHECKEDIN_SUCCESS,
+    USER_LISTCHECKEDIN_FAIL
 } from "../constants/userConstants"
 
 export const signin = (email, password) => async (dispatch) => {
@@ -46,7 +49,7 @@ export const checkin = (userId, username, userlvl) => async (dispatch) => {
     });
 
     try {
-        const { data } = await Axios.post(`${config.baseURL}/api/user/checkin`, {
+        const { data } = await Axios.post(`http://localhost:5000/api/user/checkin`, {
         userId,
         username,
         userlvl
@@ -58,6 +61,25 @@ export const checkin = (userId, username, userlvl) => async (dispatch) => {
     } catch(error) {
         dispatch({
             type: USER_CHECKIN_FAIL,
+            payload: error.message
+        });
+    }
+}
+
+export const listCheckedIn = () => async (dispatch) => {
+    dispatch({
+        type: USER_LISTCHECKEDIN_REQUEST
+    });
+
+    try {
+        const { data } = await Axios.get(`http://localhost:5000/api/users/checkedin`);
+        dispatch({
+            type: USER_LISTCHECKEDIN_SUCCESS,
+            payload: data
+        });
+    } catch(error) {
+        dispatch({
+            type: USER_LISTCHECKEDIN_FAIL,
             payload: error.message
         });
     }

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from 'react';
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -17,47 +17,74 @@ import CustomTabs from "components/CustomTabs/CustomTabs";
 import { Button } from "@material-ui/core";
 import { useDispatch, useSelector } from "react-redux";
 
+import { listCheckedIn } from '../../../actions/userActions'; 
+import LoadingBox from "components/LoadingBox";
+import MessageBox from "components/MessageBox";
+
+import TeamSort from '../../../components/TeamSort';
+
+let teams = [];
+
 const useStyles = makeStyles(styles);
 
 export default function SectionTabs(props) {
-
-  const { checkedIn } = props;
-
   const dispatch = useDispatch();
+  
+  const [checkinConfirmed, setCheckinConfirmed] = useState(false);
+  const [teamsSorted, setTeamsSorted] = useState(false);
+
+  const checkedInUsersList = useSelector((state) => state.checkedInList); //definindo reducer
+  const { loading, error, users } = checkedInUsersList; 
 
   const userSignin = useSelector( (state) => state.userSignin );
   const { userInfo } = userSignin;
 
   let verificador = false;
 
-  checkedIn.map((checkedUser) => {
-    if(checkedUser.id != userInfo.id)
-    {
-      console.log('diferente');
-    } else {
-      verificador = true;
-    }
-  })
+  if (!loading) {
+    users.map( (checkedUser) => {
+      if(checkedUser.userId !== userInfo.id) //set verificador true if user in checkin page is already checkedin
+      {
+        //return verificador = false;
+        //se eu nao achei o cara nos já checkados eu nao faço nada
+      } else {
+        verificador = true;
+      }
+    });
 
+  }
 
-  const handleCheckIn = () => {
-    console.log("UserId: %d, Username: %s, LVL: %d", userInfo.id, userInfo.username, Math.trunc(userInfo.lvl*10))
-    console.log('checkin realizado com sucesso');
+  const handleCheckIn = (checkinConfirmed) => {
     dispatch(checkin(userInfo.id, userInfo.username, Math.trunc(userInfo.lvl*10)));
+    setCheckinConfirmed(true);
   };
+
+  const handleTeams = (teamsSorted) => {
+    //teams = teamSort(users);
+    setTeamsSorted(true);
+  };
+
+  useEffect(() => {
+    dispatch(listCheckedIn()); 
+}, [checkinConfirmed]);
 
   const classes = useStyles();
   return (
     <div className={classes.section}>
       <div className={classes.container}>
         <div id="nav-tabs">
-          <h3>Navigation Tabs</h3>
+          <h3>Checkin e separação de times</h3>
           <GridContainer>
             <GridItem xs={12} sm={12} md={6}>
               <h3>
-                <small>Tabs with Icons on Card</small>
+                <small>Faça seu checkin e aguarde a tiradada de time</small>
               </h3>
-              <CustomTabs
+              {loading ? (
+                  <LoadingBox></LoadingBox>
+              ) : error? (
+                  <MessageBox>{error}</MessageBox>
+              ) : (
+                <CustomTabs
                 headerColor="primary"
                 tabs={[
                   {
@@ -76,12 +103,14 @@ export default function SectionTabs(props) {
                     )
                   },
                   {
+                    
                     tabName: "Ver lista",
                     tabIcon: Chat,
                     tabContent: (
                       <p className={classes.textCenter}>
-                        {checkedIn.map((checkedUser) => {
-                          return <li>ID: {checkedUser.id}</li>
+                        {users.length} Jogadores
+                        {users.map((checkedUser) => {
+                          return <li key={checkedUser.userId}>{checkedUser.username} LVL: {checkedUser.userlvl}</li>
                         })}
                       </p>
                     )
@@ -91,75 +120,19 @@ export default function SectionTabs(props) {
                     tabIcon: Build,
                     tabContent: (
                       <p className={classes.textCenter}>
-                        think that’s a responsibility that I have, to push
-                        possibilities, to show people, this is the level that
-                        things could be at. So when you get something that has
-                        the name Kanye West on it, it’s supposed to be pushing
-                        the furthest possibilities. I will be the leader of a
-                        company that ends up being worth billions of dollars,
-                        because I got the answers. I understand culture. I am
-                        the nucleus.
+                        {userInfo ? (
+                                    teamsSorted ? (
+                                      (<TeamSort users={users}></TeamSort>)
+                                    ) : (<Button variant="contained" type="submit" color="primary" onClick={handleTeams}>Tirar times</Button>)
+                            ) : (
+                              <div>Faça login primeiro</div>
+                            )}
                       </p>
                     )
                   }
                 ]}
               />
-            </GridItem>
-            <GridItem xs={12} sm={12} md={6}>
-              <h3>
-                <small>Tabs on Plain Card</small>
-              </h3>
-              <CustomTabs
-                plainTabs
-                headerColor="danger"
-                tabs={[
-                  {
-                    tabName: "Home",
-                    tabContent: (
-                      <p className={classes.textCenter}>
-                        I think that’s a responsibility that I have, to push
-                        possibilities, to show people, this is the level that
-                        things could be at. So when you get something that has
-                        the name Kanye West on it, it’s supposed to be pushing
-                        the furthest possibilities. I will be the leader of a
-                        company that ends up being worth billions of dollars,
-                        because I got the answers. I understand culture. I am
-                        the nucleus.
-                      </p>
-                    )
-                  },
-                  {
-                    tabName: "Updates",
-                    tabContent: (
-                      <p className={classes.textCenter}>
-                        I think that’s a responsibility that I have, to push
-                        possibilities, to show people, this is the level that
-                        things could be at. I will be the leader of a company
-                        that ends up being worth billions of dollars, because I
-                        got the answers. I understand culture. I am the nucleus.
-                        I think that’s a responsibility that I have, to push
-                        possibilities, to show people, this is the level that
-                        things could be at.
-                      </p>
-                    )
-                  },
-                  {
-                    tabName: "History",
-                    tabContent: (
-                      <p className={classes.textCenter}>
-                        think that’s a responsibility that I have, to push
-                        possibilities, to show people, this is the level that
-                        things could be at. So when you get something that has
-                        the name Kanye West on it, it’s supposed to be pushing
-                        the furthest possibilities. I will be the leader of a
-                        company that ends up being worth billions of dollars,
-                        because I got the answers. I understand culture. I am
-                        the nucleus.
-                      </p>
-                    )
-                  }
-                ]}
-              />
+              )}
             </GridItem>
           </GridContainer>
         </div>

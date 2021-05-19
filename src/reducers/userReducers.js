@@ -11,7 +11,10 @@ import {
     USER_SIGNOUT,
     USER_CHECKIN_REQUEST,
     USER_CHECKIN_SUCCESS,
-    USER_CHECKIN_FAIL
+    USER_CHECKIN_FAIL,
+    USER_LISTCHECKEDIN_REQUEST,
+    USER_LISTCHECKEDIN_SUCCESS,
+    USER_LISTCHECKEDIN_FAIL
 } from "../constants/userConstants";
 
 export const userSigninReducer = (state = {}, action) => {
@@ -62,6 +65,19 @@ export const userCheckinReducer = (state = {}, action) => {
         case USER_CHECKIN_SUCCESS:
             return {loading: false, userInfo: action.payload}
         case USER_CHECKIN_FAIL:
+            return {loading: false, error: action.payload}
+        default:
+            return state;
+    }
+}
+
+export const checkedInListReducer = (state = { users: [] }, action) => {
+    switch(action.type) {
+        case USER_LISTCHECKEDIN_REQUEST:
+            return {loading: true};
+        case USER_LISTCHECKEDIN_SUCCESS:
+            return {loading: false, users: action.payload}
+        case USER_LISTCHECKEDIN_FAIL:
             return {loading: false, error: action.payload}
         default:
             return state;

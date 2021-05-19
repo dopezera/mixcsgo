@@ -68,7 +68,7 @@ function App() {
         <main>
         <Route path="/register" component={UserForm} exact></Route>
         <Route path="/login" component={SigninScreen} exact></Route>
-        <Route path="/checkin" component={CheckinScreen} exact></Route>
+        <ProtectedRoute path="/checkin" isAuth={userInfo} component={CheckinScreen} exact></ProtectedRoute>
         <ProtectedRoute path="/users" isAuth={userInfo} component={UserScreen} exact></ProtectedRoute>
         <ProtectedRoute path="/matches" isAuth={userInfo} component={MatchesScreen} exact></ProtectedRoute>
       </main>
