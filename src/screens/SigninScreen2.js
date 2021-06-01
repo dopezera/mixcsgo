@@ -61,12 +61,16 @@ export default function LoginPage(props) {
     useEffect(() => {
 
       window.addEventListener("message", event => {
-          if (event.origin !== 'http://refacttesting.herokuapp.com') {
-            console.log('esperando o ok pós login!');
+          if (event.origin !== process.env.REACT_APP_API_URL) {
+            console.log(event.origin);
+            console.log(process.env.REACT_APP_API_URL);
             return;
           }
     
           const { id, username, steamid, lvl, token, ok } = event.data;
+
+          console.log('--');
+          console.log(event.data);
     
           if (ok) {
             console.log('ta chamando o dispatch');
