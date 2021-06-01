@@ -69,7 +69,7 @@ export default function LoginPage(props) {
     
           const { id, username, steamid, lvl, token, ok } = event.data;
 
-          console.log('--');
+          console.log('---');
           console.log(event.data);
     
           if (ok) {
