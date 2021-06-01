@@ -62,7 +62,7 @@ export default function LoginPage(props) {
 
       window.addEventListener("message", event => {
           if (event.origin !== 'http://refacttesting.herokuapp.com') {
-            console.log('esperando o ok pós login');
+            console.log('esperando o ok pós login!');
             return;
           }
     
