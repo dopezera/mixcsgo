@@ -61,7 +61,8 @@ export default function LoginPage(props) {
     useEffect(() => {
 
       window.addEventListener("message", event => {
-          if (event.origin !== process.env.REACT_APP_API_URL) {
+          if (event.origin !== 'http://refacttesting.herokuapp.com') {
+            console.log('esperando o ok pós login');
             return;
           }
     
