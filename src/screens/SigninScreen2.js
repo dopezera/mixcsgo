@@ -27,8 +27,6 @@ import LoadingBox from 'components/LoadingBox.js';
 import MessageBox from 'components/MessageBox.js';
 import { Icon, Paper } from '@material-ui/core';
 
-import config from '../config';
-
 const useStyles = makeStyles(styles);
 
 export default function LoginPage(props) {
@@ -42,7 +40,7 @@ export default function LoginPage(props) {
 
   const handleLogin = () => {
     const popupWindow = window.open(
-      `${config.baseURL}` + "/api/auth/steam",
+      "http://refacttesting.herokuapp.com" + "/api/auth/steam",
       "_blank",
       "width=800, height=600",
     );
@@ -51,7 +49,7 @@ export default function LoginPage(props) {
 
   const redirect = props.location.search
     ? props.location.search.split('=')[1]
-    : '/checkin';
+    : '/users';
 
     const userSignin = useSelector((state) => state.userSignin);
     const { userInfo, loading, error } = userSignin;
@@ -62,19 +60,12 @@ export default function LoginPage(props) {
 
       window.addEventListener("message", event => {
           if (event.origin !== process.env.REACT_APP_API_URL) {
-            console.log(event.origin);
-            console.log(process.env.REACT_APP_API_URL);
             return;
           }
-    
-          const { id, username, steamid, lvl, token, ok } = event.data;
 
-          console.log('-- event data --');
-          console.log(event.data);
-          console.log('---');
+          const { id, username, steamid, lvl, token, ok } = event.data;
     
           if (ok) {
-            console.log('ta chamando o dispatch');
             dispatch(signin(steamid));
           }
       });
