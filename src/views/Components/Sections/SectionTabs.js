@@ -22,6 +22,7 @@ import LoadingBox from "components/LoadingBox";
 import MessageBox from "components/MessageBox";
 
 import TeamSort from '../../../components/TeamSort';
+import Badge from 'components/Badge/Badge';
 
 let teams = [];
 
@@ -110,7 +111,7 @@ export default function SectionTabs(props) {
                       <p className={classes.textCenter}>
                         {users.length} Jogadores
                         {users.map((checkedUser) => {
-                          return <li key={checkedUser.userId}>{checkedUser.username} LVL: {checkedUser.userlvl}</li>
+                          return <li key={checkedUser.userId}>{checkedUser.username} LVL: <Badge color="primary">{checkedUser.userlvl}</Badge></li>
                         })}
                       </p>
                     )

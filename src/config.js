@@ -1,5 +1,5 @@
 const config  = {
-    baseURL: 'https://refacttesting.herokuapp.com'
+    baseURL: 'http://refacttesting.herokuapp.com'
 };
 
 export default config;

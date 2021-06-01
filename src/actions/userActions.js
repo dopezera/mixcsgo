@@ -20,10 +20,10 @@ import {
     USER_LISTCHECKEDIN_FAIL
 } from "../constants/userConstants"
 
-export const signin = (email, password) => async (dispatch) => {
-    dispatch({ type: USER_SIGNIN_REQUEST, payload: { email, password } });
+export const signin = (steamid) => async (dispatch) => {
+    dispatch({ type: USER_SIGNIN_REQUEST, payload: { steamid } });
     try {
-        const { data } = await Axios.post(`${config.baseURL}/api/user/signin`, { email: email, password: password });
+        const { data } = await Axios.post(`${config.baseURL}/api/user/signin`, { steamid: steamid });
         dispatch({type: USER_SIGNIN_SUCCESS, payload: data});
         localStorage.setItem("userInfo", JSON.stringify(data));
 
@@ -49,7 +49,7 @@ export const checkin = (userId, username, userlvl) => async (dispatch) => {
     });
 
     try {
-        const { data } = await Axios.post(`http://localhost:5000/api/user/checkin`, {
+        const { data } = await Axios.post(`${config.baseURL}/api/user/checkin`, {
         userId,
         username,
         userlvl
@@ -72,7 +72,7 @@ export const listCheckedIn = () => async (dispatch) => {
     });
 
     try {
-        const { data } = await Axios.get(`http://localhost:5000/api/users/checkedin`);
+        const { data } = await Axios.get(`${config.baseURL}/api/users/checkedin`);
         dispatch({
             type: USER_LISTCHECKEDIN_SUCCESS,
             payload: data

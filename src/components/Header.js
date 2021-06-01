@@ -51,6 +51,16 @@ export default function Header() {
                     </Grid>
                     <Grid item sm></Grid>
                     <Grid item>
+
+                    <IconButton size="small">
+                        {userInfo ? (
+                                    <Link to="/checkin">MIX CHECKIN</Link>
+                            ) : (
+                                <div></div>
+                            )}
+                            
+                        </IconButton>
+
                         <IconButton size="small">
                         {userInfo ? (
                                     <Badge badgeContent={Math.trunc(userInfo.lvl*10)} color="primary">

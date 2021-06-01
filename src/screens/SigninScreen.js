@@ -1,103 +1,53 @@
-import { Grid, makeStyles, Paper, TextField } from '@material-ui/core';
-import React, { useEffect, useState } from 'react';
-import {useDispatch, useSelector} from 'react-redux';
-import PageHeader from '../components/PageHeader';
-import PeopleAltIcon from '@material-ui/icons/PeopleAlt';
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import {signin} from '../actions/userActions';
 
-import Button from '@material-ui/core/Button';
-import LoadingBox from '../components/LoadingBox';
-import MessageBox from '../components/MessageBox';
-import { Link } from 'react-router-dom';
+export default function SteamSignin(props) {
 
-const useStyle = makeStyles(theme => ({
-    root: {
-        '& .MuiFormControl-root': {
-            width: '80%',
-            margin: theme.spacing(1)
-        },
-        '& .MuiButton-label': {
-            margin: theme.spacing(1)
-        },
-        '& .alert-info': {
-            backgroundColor: "#FF6961",
-            margin: theme.spacing(1),
-            color: "primary",
-            width: '20%'
-        }
-    },
-    pageContent: {
-        margin: theme.spacing(5),
-        padding: theme.spacing(3)
-    }
-}))
+  const userSignin = useSelector((state) => state.userSignin);
+  const { userInfo, loading, error } = userSignin;
 
-export default function UserSignin(props) {
-    const classes = useStyle();
+  const dispatch = useDispatch();
 
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-
-    const redirect = props.location.search
+  const redirect = props.location.search
     ? props.location.search.split('=')[1]
     : '/users';
 
-    const userSignin = useSelector((state) => state.userSignin);
-    const { userInfo, loading, error } = userSignin;
+    const handleLogin = () => {
+      const popupWindow = window.open(
+        "http://localhost:5000" + "/api/auth/steam",
+        "_blank",
+        "width=800, height=600",
+      );
+      if (window.focus) popupWindow.focus();
+    };
 
-    const dispatch = useDispatch();
-    const submitHandler = (e) => {
-        e.preventDefault();
-          dispatch(signin(email, password));
-      }; 
+  useEffect(() => {
 
-    useEffect( () => {
+        window.addEventListener("message", event => {
+            if (event.origin !== process.env.REACT_APP_API_URL) return;
+      
+            const { id, username, steamid, lvl, token, ok } = event.data;
+      
+            if (ok) {
+              dispatch(signin(steamid));
+            }
+        });
+
         if(userInfo) {
-            props.history.push(redirect);
-        }
-    }, [userInfo, props.history, redirect]);
+          props.history.push(redirect);
+      }
 
-    return (
-        <>
-            <PageHeader 
-            title="Login" 
-            subtitle="Informe seu username e senha" 
-            icon={<PeopleAltIcon fontSize="large"/>}
-            />
+  }, [userInfo, props.history, redirect]);
 
-            <Paper className={classes.pageContent}>
-            <form className={classes.root} onSubmit={submitHandler}>
-                <Grid container>
-                    <Grid item xs={12}>
-                        <TextField 
-                        type="email"
-                        id="email"
-                        placeholder="Enter email"
-                        required
-                        onChange={(e) => setEmail(e.target.value)}
-                        />
-                        <TextField
-                        id="standard-password-input"
-                        label="Senha"
-                        type="password"
-                        autoComplete="current-password"
-                        onChange={(e) => setPassword(e.target.value)}
-                        />
-                        <Grid>
-                        {loading && <LoadingBox></LoadingBox>}
-                        {error && <MessageBox>{error}</MessageBox>}
-                        <Button variant="contained" type="submit" color="primary">Login</Button>
-                        <div>
-                            Você é novo aqui?{' '}
-                            <Link to={`/register?redirect=${redirect}`}>
-                            Crie a sua conta
-                            </Link>
-                        </div>
-                        </Grid>
-                    </Grid>
-                </Grid>
-            </form>
-            </Paper>
-        </>
-    )
-}
+  return (
+    <div className="App">
+      <h1>Steam JWT Login</h1>
+      <img
+        onClick={handleLogin}
+        src="https://steamcommunity-a.akamaihd.net/public/images/signinthroughsteam/sits_01.png"
+        alt="Login with Steam"
+      />
+    </div>
+  );
+};

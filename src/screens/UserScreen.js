@@ -47,6 +47,8 @@ const dispatch = useDispatch();
 const userList = useSelector((state) => state.userList); //definindo reducer
 const { loading, error, users } = userList; 
 
+
+
 React.useEffect(() => {
     dispatch(listUsers()); 
 }, []);

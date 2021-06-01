@@ -14,6 +14,8 @@ import MatchesScreen from './screens/MatchesScreen';
 import ProtectedRoute from './components/ProtectedRoute';
 import { useSelector } from 'react-redux';
 
+import SigninScreen2 from './screens/SigninScreen2';
+
 const theme = createMuiTheme({
 palette: {
   primary: {
@@ -47,27 +49,28 @@ props: {
 
 const useStyles = makeStyles({
   appMain: {
-    paddingLeft: '10%',
-    paddingRight: '10%',
+    paddingLeft: '',
+    paddingRight: '',
     width: '100%',
   }
 })
 
-function App() {
+function App(props) {
   const classes = useStyles();
 
   const userSignin = useSelector( (state) => state.userSignin );
   const { userInfo } = userSignin;
 
-  
+  const { ...rest } = props;
+
   return (
     <BrowserRouter>
     <ThemeProvider theme={theme}>
       <div className={classes.appMain}>
-        <Header />
         <main>
-        <Route path="/register" component={UserForm} exact></Route>
-        <Route path="/login" component={SigninScreen} exact></Route>
+        <Header></Header>
+        <Route path="/login" component={SigninScreen2} exact></Route>
+        <Route path="/login2" component={SigninScreen2} exact></Route>
         <ProtectedRoute path="/checkin" isAuth={userInfo} component={CheckinScreen} exact></ProtectedRoute>
         <ProtectedRoute path="/users" isAuth={userInfo} component={UserScreen} exact></ProtectedRoute>
         <ProtectedRoute path="/matches" isAuth={userInfo} component={MatchesScreen} exact></ProtectedRoute>

@@ -14,7 +14,7 @@ export default function CustomLinearProgress(props) {
   const classes = useStyles();
   const { color, ...rest } = props;
   return (
-    <LinearProgress
+    <LinearProgress       buffer={50}
       {...rest}
       classes={{
         root: classes.root + " " + classes[color + "Background"],
