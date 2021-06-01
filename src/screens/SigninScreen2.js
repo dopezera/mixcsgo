@@ -69,8 +69,9 @@ export default function LoginPage(props) {
     
           const { id, username, steamid, lvl, token, ok } = event.data;
 
-          console.log('---');
+          console.log('- event data -');
           console.log(event.data);
+          console.log('---');
     
           if (ok) {
             console.log('ta chamando o dispatch');
