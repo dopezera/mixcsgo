@@ -66,6 +66,7 @@ export default function LoginPage(props) {
           const { id, username, steamid, lvl, token, ok } = event.data;
     
           if (ok) {
+            console.log('rolou o ok');
             dispatch(signin(steamid));
           }
       });
