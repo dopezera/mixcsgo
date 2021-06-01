@@ -62,13 +62,13 @@ export default function LoginPage(props) {
 
       window.addEventListener("message", event => {
           if (event.origin !== process.env.REACT_APP_API_URL) {
-            console.log('bronca aqui');
             return;
           }
     
           const { id, username, steamid, lvl, token, ok } = event.data;
     
           if (ok) {
+            console.log('ta chamando o dispatch');
             dispatch(signin(steamid));
           }
       });
