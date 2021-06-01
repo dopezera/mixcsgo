@@ -69,7 +69,7 @@ function App(props) {
       <div className={classes.appMain}>
         <main>
         <Header></Header>
-        <Route path="/login" component={SigninScreen2} exact></Route>
+        <Route path="/login" component={SigninScreen} exact></Route>
         <Route path="/login2" component={SigninScreen2} exact></Route>
         <ProtectedRoute path="/checkin" isAuth={userInfo} component={CheckinScreen} exact></ProtectedRoute>
         <ProtectedRoute path="/users" isAuth={userInfo} component={UserScreen} exact></ProtectedRoute>
