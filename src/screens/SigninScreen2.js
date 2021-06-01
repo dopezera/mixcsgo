@@ -61,7 +61,10 @@ export default function LoginPage(props) {
     useEffect(() => {
 
       window.addEventListener("message", event => {
-          if (event.origin !== process.env.REACT_APP_API_URL) return;
+          if (event.origin !== process.env.REACT_APP_API_URL) {
+            console.log('bronca aqui');
+            return;
+          }
     
           const { id, username, steamid, lvl, token, ok } = event.data;
     
