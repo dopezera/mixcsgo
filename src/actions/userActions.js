@@ -49,7 +49,7 @@ export const checkin = (userId, username, userlvl) => async (dispatch) => {
     });
 
     try {
-        const { data } = await Axios.post(`http://refacttesting.herokuapp.com/api/user/checkin`, {
+        const { data } = await Axios.post(`http://localhost:5000/api/user/checkin`, {
         userId,
         username,
         userlvl
@@ -72,7 +72,7 @@ export const listCheckedIn = () => async (dispatch) => {
     });
 
     try {
-        const { data } = await Axios.get(`http://refacttesting.herokuapp.com/api/users/checkedin`);
+        const { data } = await Axios.get(`http://localhost:5000/api/users/checkedin`);
         dispatch({
             type: USER_LISTCHECKEDIN_SUCCESS,
             payload: data

@@ -40,7 +40,7 @@ export default function LoginPage(props) {
 
   const handleLogin = () => {
     const popupWindow = window.open(
-      "http://refacttesting.herokuapp.com" + "/api/auth/steam",
+      "http://localhost:5000" + "/api/auth/steam",
       "_blank",
       "width=800, height=600",
     );
@@ -60,13 +60,16 @@ export default function LoginPage(props) {
 
       window.addEventListener("message", event => {
           if (event.origin !== process.env.REACT_APP_API_URL) {
+            console.log(event.origin);
+            console.log(process.env.REACT_APP_API_URL);
             return;
           }
 
+          console.log(event.origin);
+          console.log(process.env.REACT_APP_API_URL);
           const { id, username, steamid, lvl, token, ok } = event.data;
     
           if (ok) {
-            console.log('rolou o ok');
             dispatch(signin(steamid));
           }
       });
