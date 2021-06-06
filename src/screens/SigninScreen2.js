@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from 'react';
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
-import InputAdornment from "@material-ui/core/InputAdornment";
 // @material-ui/icons
-import Email from "@material-ui/icons/Email";
 // core components
 import Header from "../components/Header/Header.js";
 import HeaderLinks from "../components/Header/HeaderLinks.js";
@@ -25,7 +23,6 @@ import {useDispatch, useSelector} from 'react-redux';
 import {signin} from '../actions/userActions';
 import LoadingBox from 'components/LoadingBox.js';
 import MessageBox from 'components/MessageBox.js';
-import { Icon, Paper } from '@material-ui/core';
 
 const useStyles = makeStyles(styles);
 

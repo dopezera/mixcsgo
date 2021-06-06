@@ -7,7 +7,6 @@ import { CssBaseline, makeStyles, createMuiTheme, ThemeProvider } from '@materia
 import Header from './components/Header';
 import UserForm from './screens/UserForm';
 
-import SigninScreen from './screens/SigninScreen';
 import CheckinScreen from './screens/CheckinScreen';
 import UserScreen from './screens/UserScreen';
 import MatchesScreen from './screens/MatchesScreen';
@@ -69,8 +68,8 @@ function App(props) {
       <div className={classes.appMain}>
         <main>
         <Header></Header>
-        <Route path="/login" component={SigninScreen} exact></Route>
-        <Route path="/login2" component={SigninScreen2} exact></Route>
+        <Route path="/login" component={SigninScreen2} exact></Route>
+        <Route path="/register" component={UserForm} exact></Route>
         <ProtectedRoute path="/checkin" isAuth={userInfo} component={CheckinScreen} exact></ProtectedRoute>
         <ProtectedRoute path="/users" isAuth={userInfo} component={UserScreen} exact></ProtectedRoute>
         <ProtectedRoute path="/matches" isAuth={userInfo} component={MatchesScreen} exact></ProtectedRoute>
