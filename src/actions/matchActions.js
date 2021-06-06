@@ -13,7 +13,7 @@ export const listMatches = () => async (dispatch) => {
     });
 
     try {
-        const { data } = await Axios.get(`${config.baseURL}/api/matches`);
+        const { data } = await Axios.get(`${config.BACKEND_URL}/api/matches`);
         dispatch({
             type: MATCH_LIST_SUCCESS,
             payload: data
