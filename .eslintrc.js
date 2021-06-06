@@ -1,7 +1,6 @@
 module.exports = {
   env: {
     node: true,
-    commonjs: true,
     es6: true,
     jest: true,
   },
@@ -13,6 +12,7 @@ module.exports = {
   },
   parserOptions: {
     ecmaVersion: 2018,
+    sourceType: 'module',
   },
   rules: {
     //"no-unused-vars": "off"
