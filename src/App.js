@@ -13,7 +13,7 @@ import MatchesScreen from './screens/MatchesScreen';
 import ProtectedRoute from './components/ProtectedRoute';
 import { useSelector } from 'react-redux';
 
-import SigninScreen2 from './screens/SigninScreen2';
+import Login from './screens/Login';
 
 const theme = createMuiTheme({
 palette: {
@@ -68,7 +68,7 @@ function App(props) {
       <div className={classes.appMain}>
         <main>
         <Header></Header>
-        <Route path="/login" component={SigninScreen2} exact></Route>
+        <Route path="/login" component={Login} exact></Route>
         <Route path="/register" component={UserForm} exact></Route>
         <ProtectedRoute path="/checkin" isAuth={userInfo} component={CheckinScreen} exact></ProtectedRoute>
         <ProtectedRoute path="/users" isAuth={userInfo} component={UserScreen} exact></ProtectedRoute>
