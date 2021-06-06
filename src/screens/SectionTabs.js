@@ -43,15 +43,16 @@ export default function SectionTabs(props) {
   let verificador = false
 
   if (!loading) {
-    users.map(checkedUser => {
-      if (checkedUser.userId !== userInfo.id) {
-        //set verificador true if user in checkin page is already checkedin
-        //return verificador = false;
-        //se eu nao achei o cara nos já checkados eu nao faço nada
-      } else {
-        verificador = true
-      }
-    })
+    users &&
+      users.map(checkedUser => {
+        if (checkedUser.userId !== userInfo.id) {
+          //set verificador true if user in checkin page is already checkedin
+          //return verificador = false;
+          //se eu nao achei o cara nos já checkados eu nao faço nada
+        } else {
+          verificador = true
+        }
+      })
   }
 
   const handleCheckIn = checkinConfirmed => {
