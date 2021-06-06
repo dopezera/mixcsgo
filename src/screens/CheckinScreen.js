@@ -1,16 +1,8 @@
-import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-
-import { listCheckedIn } from '../actions/userActions'; //criar action
-import SectionTabs from "../views/Components/Sections/SectionTabs";
-
+import React from 'react'
+import SectionTabs from './SectionTabs'
+import {listCheckedIn} from '../actions/userActions'
+import {useDispatch, useSelector} from 'react-redux'
 
 export default function CheckinScreen() {
-
-    
-
-    return (
-
-        <SectionTabs/>
-    );
+  return <SectionTabs />
 }
