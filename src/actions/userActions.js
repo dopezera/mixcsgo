@@ -23,7 +23,7 @@ import {
 export const signin = (steamid) => async (dispatch) => {
     dispatch({ type: USER_SIGNIN_REQUEST, payload: { steamid } });
     try {
-        const { data } = await Axios.post(`${config.baseURL}/api/user/signin`, { steamid: steamid });
+        const { data } = await Axios.post(`${config.BACKEND_URL}/api/user/signin`, { steamid: steamid });
         dispatch({type: USER_SIGNIN_SUCCESS, payload: data});
         localStorage.setItem("userInfo", JSON.stringify(data));
 
@@ -92,7 +92,7 @@ export const register = (username, steamid, email, password) => async (dispatch)
     });
 
     try {
-        const { data } = await Axios.post(`${config.baseURL}/api/user/create`, {
+        const { data } = await Axios.post(`${config.BACKEND_URL}/api/user/create`, {
         username,
         steamid,
         email,
@@ -116,7 +116,7 @@ export const listUsers = () => async (dispatch) => {
     });
 
     try {
-        const { data } = await Axios.get(`${config.baseURL}/api/users`);
+        const { data } = await Axios.get(`${config.BACKEND_URL}/api/users`);
         dispatch({
             type: USER_LIST_SUCCESS,
             payload: data
