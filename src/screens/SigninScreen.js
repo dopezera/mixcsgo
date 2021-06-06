@@ -48,6 +48,7 @@ export default function SteamSignin(props) {
         src="https://steamcommunity-a.akamaihd.net/public/images/signinthroughsteam/sits_01.png"
         alt="Login with Steam"
       />
+      ...
     </div>
   );
 };
