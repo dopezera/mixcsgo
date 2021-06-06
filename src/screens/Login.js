@@ -55,6 +55,9 @@ export default function LoginPage(props) {
 
   useEffect(() => {
     window.addEventListener('message', event => {
+      console.log(`Received message`)
+      console.log(event)
+
       if (event.origin !== config.BACKEND_URL) {
         console.log(event.origin)
         console.log(config.BACKEND_URL)
