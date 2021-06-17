@@ -96,7 +96,7 @@ export default function SectionTabs(props) {
                       tabContent: (
                         <p className={classes.textCenter}>
                           {userInfo ? (
-                            verificador ? (
+                            (verificador || checkinConfirmed) ? (
                               <div>
                                 Oi, {userInfo.username}. Você já fez checkin.
                               </div>
