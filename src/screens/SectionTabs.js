@@ -24,8 +24,6 @@ import MessageBox from 'components/MessageBox'
 import TeamSort from '../components/TeamSort'
 import Badge from 'components/Badge/Badge'
 
-let teams = []
-
 const useStyles = makeStyles(styles)
 
 export default function SectionTabs(props) {
@@ -45,30 +43,21 @@ export default function SectionTabs(props) {
   if (!loading) {
     users &&
       users.map(checkedUser => {
-        if (checkedUser.userId !== userInfo.id) {
-          //set verificador true if user in checkin page is already checkedin
-          //return verificador = false;
-          //se eu nao achei o cara nos já checkados eu nao faço nada
-        } else {
-          verificador = true
-        }
+        if (checkedUser.userId === userInfo.id) verificador = true
       })
   }
 
-  const handleCheckIn = checkinConfirmed => {
-    dispatch(
-      checkin(userInfo.id, userInfo.username, Math.trunc(userInfo.lvl * 10)),
-    )
+  const handleCheckIn = () => {
+    dispatch(checkin(userInfo.id, userInfo.username, Math.trunc(userInfo.lvl * 10)))
     setCheckinConfirmed(true)
   }
 
-  const handleTeams = teamsSorted => {
-    //teams = teamSort(users);
+  const handleTeams = () => {
     setTeamsSorted(true)
   }
 
   useEffect(() => {
-    dispatch(listCheckedIn())
+    dispatch(listCheckedIn()) //tambem to executando isso dentro da action de checkin como forma de garantir reload na lista de checkedin qdo alguem checkain
   }, [checkinConfirmed])
 
   const classes = useStyles()
@@ -77,6 +66,10 @@ export default function SectionTabs(props) {
       <div className={classes.container}>
         <div id="nav-tabs">
           <h3>Checkin e separação de times</h3>
+          <h2>Checkin: { checkinConfirmed? 1 : 2 }</h2>
+          {loading ? (
+                2
+              ) : users.length }
           <GridContainer>
             <GridItem xs={12} sm={12} md={6}>
               <h3>

@@ -57,7 +57,7 @@ export const checkin = (userId, username, userlvl) => async (dispatch) => {
         dispatch({
             type: USER_CHECKIN_SUCCESS,
             payload: data
-        });
+        }, dispatch(listCheckedIn()));
     } catch(error) {
         dispatch({
             type: USER_CHECKIN_FAIL,
